@@ -21,6 +21,10 @@ const SignInForm = () =>{
         setFormFields({...formFields, [name]: value})
     }
 
+    const resetFormFields = () =>{
+        setFormFields(defaultFormfields);
+    }
+
     const handleOnSignIn = async (event) =>{
         event.preventDefault();
 
@@ -33,8 +37,19 @@ const SignInForm = () =>{
         try {
             const { user } = await signInUserWithEmailAndPassword(email, password);
             console.log(user);
+            resetFormFields();
         } catch (error){
-            console.error('There has been an error authenticating user: ', error);
+
+            switch(error.code) {
+                case 'auth/invalid-credential':
+                    alert('Wrong email/password combination');
+                    break;
+                case 'auth/user-not-found':
+                    alert('No user associated with this email');
+                    break;
+                default:
+                    console.error('Error: ', error.code);
+            }
         }
     }
 
@@ -69,7 +84,7 @@ const SignInForm = () =>{
                 />
                 <div className="buttons-container">
                     <Button type="submit">Sign In</Button>
-                    <Button buttonType='google' onClick={handleOnGoogleSignIn}>
+                    <Button type="button" buttonType='google' onClick={handleOnGoogleSignIn}>
                         Google Sign In
                     </Button>
                 </div>
