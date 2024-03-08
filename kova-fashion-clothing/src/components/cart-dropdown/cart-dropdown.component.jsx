@@ -8,10 +8,11 @@ import { CartContext } from '../../context/cart.context';
 const CartDropdown = () =>{
     const { cartItems } = useContext(CartContext);
     const navigateToCart = useNavigate();
+    // const isCheckoutDisabled = cartItems.length;
 
     const handleOnClick = () =>{
         console.log('Triggered Cart Page Navigation');
-        navigateToCart('cart');
+        navigateToCart('checkout');
     }
     return (
         <div className='cart-dropdown-container'>
