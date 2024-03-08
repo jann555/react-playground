@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import './sign-up-form.styles.scss';
@@ -36,8 +35,8 @@ const SignUpForm = () => {
         try {
             const { user } = await createAuthUserWithEmailAndPassword(email, password);
             // passing displayName as an additional parameter since user does not have one
-            const userDocRef = await createUserDocumentFromAuth({...user, displayName});
-            console.log(userDocRef);
+            await createUserDocumentFromAuth({...user, displayName});
+
             resetFormFields();
         }catch(error){
             if (error.code === 'auth/email-already-in-use'){
