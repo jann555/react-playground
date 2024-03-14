@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { CategoriesContext } from "../../context/categories.context";
 import ProductCard from "../product-card/product-card.component";
 
+import '../category/category.styles.scss';
+
 const Category = () => {
     const { category } = useParams();
     const { categoriesMap } = useContext(CategoriesContext);
