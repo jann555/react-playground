@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-
+import { createAction } from "../utils/reducer/reducer.utils";
 export const CartContext = createContext({
     isCartOpen: false,
     setIsCartOpen: false,
@@ -61,17 +61,6 @@ const cartReducer = (state, action) => {
                 ...state,
                 isCartOpen: payload,
             }
-        case CART_ACTION_TYPES.SET_CART_COUNT:
-            return {
-                ...state,
-                cartCount: payload,
-            }
-        case CART_ACTION_TYPES.SET_TOTAL:
-            return {
-                ...state,
-                cartTotal:payload,
-            }
-    
         default:
             throw new Error(`Unhandled type ${type} in cartReducer`);;
     }
@@ -93,15 +82,14 @@ export const CartProvider = ({children}) =>{
     const updateCartItemsReducer = (newCartItems) =>{
         const newCartCount = newCartItems.reduce( (total, cartItem) => total + cartItem.quantity, 0);
         const newCartTotal = newCartItems.reduce( (total, cartItem) => total + (cartItem.quantity * cartItem.price), 0);
-
-        dispatch({
-            type: CART_ACTION_TYPES.SET_CART_ITEMS,
-            payload: {
+        // Reducers are the best option when we need to update multiple values
+        dispatch(
+            createAction(CART_ACTION_TYPES.SET_CART_ITEMS, {
                 cartItems: newCartItems,
                 cartCount: newCartCount,
                 cartTotal: newCartTotal,
-            }
-        });
+            })
+            );
     }
 
     const addItemToCart = (productToAdd) => {
@@ -120,10 +108,7 @@ export const CartProvider = ({children}) =>{
     }
 
     const setIsCartOpen = (bool) => {
-        dispatch({
-            type: CART_ACTION_TYPES.SET_IS_CART_OPEN,
-            payload: bool,
-        })
+        dispatch(createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, bool));
     }
 
     const value = {
