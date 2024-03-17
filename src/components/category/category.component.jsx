@@ -10,10 +10,12 @@ import '../category/category.styles.scss';
 const Category = () => {
     // Get the category param from the URL
     const { category } = useParams();
+    console.log('render/ re-dendering category component');
     const categoriesMap  = useSelector(selectCategories)
     const [products, setProducts] = useState(categoriesMap[category]);
 
     useEffect( () => {
+        console.log('Category Effect fired SetProducts');
         setProducts(categoriesMap[category])
     }, [category, categoriesMap]);
 
