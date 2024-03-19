@@ -8,7 +8,7 @@ export const selectCategories = createSelector(
 )
 
 // Memoized selector
-export const selectCategoriesMap =  createSelector(
+export const selectCategoriesMap = createSelector(
     [selectCategories], 
     (categories) =>
     categories.reduce((acc, category) => {
@@ -16,4 +16,9 @@ export const selectCategoriesMap =  createSelector(
         acc[title.toLowerCase()] = items;
         return acc;
     }, {})
-)
+);
+
+export const selectCategoriesIsLoading = createSelector(
+    [selectCategories],
+    (categoriesSlice) =>(categoriesSlice.isLoading)
+);
