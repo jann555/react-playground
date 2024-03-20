@@ -1,13 +1,14 @@
-import { useSelector } from "react-redux";
-import { selectCartItems, selectCartTotal } from "../../store/cart/cart.selector.js";
-import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+/* eslint-disable react/react-in-jsx-scope */
+import { useSelector } from 'react-redux'
+import { selectCartItems, selectCartTotal } from '../../store/cart/cart.selector.js'
+import CheckoutItem from '../../components/checkout-item/checkout-item.component'
 
-import { CheckoutContainer, CheckOutHeader, HeaderBlock, TotalItems } from './checkout.styles.jsx';
+import { CheckoutContainer, CheckOutHeader, HeaderBlock, TotalItems } from './checkout.styles.jsx'
 
-const Checkout = () =>{
-    const cartItems = useSelector(selectCartItems);
-    const cartTotal = useSelector(selectCartTotal);
-    return (
+const Checkout = () => {
+  const cartItems = useSelector(selectCartItems)
+  const cartTotal = useSelector(selectCartTotal)
+  return (
         <CheckoutContainer>
             <CheckOutHeader>
                 <HeaderBlock>
@@ -27,13 +28,13 @@ const Checkout = () =>{
                 </HeaderBlock>
             </CheckOutHeader>
             <div>
-            {cartItems.map( (item) => (
+            {cartItems.map((item) => (
                     <CheckoutItem key={item.id} cartItem={item}></CheckoutItem>
-                ))
+            ))
             }
             </div>
             <TotalItems>Total: ${cartTotal}</TotalItems>
         </CheckoutContainer>
-    )
+  )
 }
-export default Checkout;
+export default Checkout
