@@ -1,4 +1,6 @@
-import { FormInputLabel, Input, Group } from './form-input.styles';
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/prop-types */
+import { FormInputLabel, Input, Group } from './form-input.styles'
 
 const FormInput = ({ label, ...otherProps }) => {
   return (
@@ -10,7 +12,7 @@ const FormInput = ({ label, ...otherProps }) => {
         </FormInputLabel>
       )}
     </Group>
-  );
-};
+  )
+}
 
-export default FormInput;
+export default FormInput

@@ -1,6 +1,5 @@
-import styled from "styled-components";
-import {BaseButton, GoogleSignInButton, InvertedButton} from '../button/button.styles';
-
+import styled from 'styled-components'
+import { BaseButton, GoogleSignInButton, InvertedButton } from '../button/button.styles'
 
 export const CartDropdownContainer = styled.div`
 position: absolute;
@@ -21,7 +20,7 @@ ${InvertedButton} {
   margin-top: auto;
 }
 
-`;
+`
 
 export const EmptyMessage = styled.span`
   font-size: 18px;
@@ -33,4 +32,4 @@ export const CartItems = styled.div`
   display: flex;
   flex-direction: column;
   overflow: scroll;
-`;
+`

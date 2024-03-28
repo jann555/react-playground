@@ -1,31 +1,22 @@
-import  { Routes, Route} from 'react-router-dom';
-import { useEffect } from "react";
-import { useDispatch } from 'react-redux';
+/* eslint-disable react/react-in-jsx-scope */
+import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
-import Navigation from './routes/navigation/navigation.component';
-import Home from "./routes/home/home.component";
-import Authentication from './routes/authentication/authentication.component';
-import Shop from './routes/shop/shop.component';
-import Checkout from './routes/checkout/checkout.component';
-
-import { setCurrentUser } from './store/user/user.action';
-import { onAuthStateChangedListerner, createUserDocumentFromAuth } from './utils/firebase/firebase.utils'
-
+import Navigation from './routes/navigation/navigation.component'
+import Home from './routes/home/home.component'
+import Authentication from './routes/authentication/authentication.component'
+import Shop from './routes/shop/shop.component'
+import Checkout from './routes/checkout/checkout.component'
+import { checkUserSession } from './store/user/user.action'
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  useEffect(()=>{
-    const unsubscribe = onAuthStateChangedListerner((user)=>{
-        if (user) {
-             createUserDocumentFromAuth(user);
-        }
-        dispatch(setCurrentUser(user));
-    });
-
-    return unsubscribe;
-    //dispatch never changes, so I just passed it to get rid of the warning.
-}, [dispatch]);
+  useEffect(() => {
+    dispatch(checkUserSession())
+    // dispatch never changes, so I just passed it to get rid of the warning.
+  }, [dispatch])
 
   return (
     <Routes>
@@ -36,7 +27,7 @@ const App = () => {
         <Route path='checkout' element={<Checkout/>}/>
       </Route>
     </Routes>
-  );    
+  )
 }
 
-export default App;
+export default App

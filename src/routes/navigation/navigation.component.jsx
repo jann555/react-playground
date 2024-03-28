@@ -1,26 +1,26 @@
-import { Fragment } from 'react';
-import  { Outlet } from 'react-router-dom';
+/* eslint-disable react/react-in-jsx-scope */
+import { Fragment } from 'react'
+import { Outlet } from 'react-router-dom'
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'
 
-import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
-import CartIcon from '../../components/cart-icon/cart-icon.component';
-import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
-
-
-
-import { signOutUser } from '../../utils/firebase/firebase.utils';
-
+import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
+import CartIcon from '../../components/cart-icon/cart-icon.component'
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component'
+import { signOutStart } from '../../store/user/user.action'
 import { NavigationContainer, NavLinks, NavLink, LogoContainer } from './navigation.styles'
 
-import { selectCurrentUser } from '../../store/user/user.selector';
-import { selectIsCartOpen } from '../../store/cart/cart.selector';
+import { selectCurrentUser } from '../../store/user/user.selector'
+import { selectIsCartOpen } from '../../store/cart/cart.selector'
 
 const Navigation = () => {
-  const currentUser = useSelector(selectCurrentUser);
-  const isCartOpen = useSelector(selectIsCartOpen);
+  const dispatch = useDispatch()
+  const currentUser = useSelector(selectCurrentUser)
+  const isCartOpen = useSelector(selectIsCartOpen)
 
-    return (
+  const signOutUser = () => dispatch(signOutStart())
+
+  return (
       <Fragment>
         <NavigationContainer>
             <LogoContainer to='/'>
@@ -28,9 +28,11 @@ const Navigation = () => {
             </LogoContainer>
             <NavLinks>
               <NavLink to='/shop'>SHOP </NavLink>
-              {currentUser ? (<NavLink  as='span' onClick={signOutUser} >SIGN OUT</NavLink>) : (
+              {currentUser
+                ? (<NavLink as='span' onClick={signOutUser} >SIGN OUT</NavLink>)
+                : (
                 <NavLink to='/authentication'>SIGN IN</NavLink>
-              )
+                  )
               }
               <CartIcon className='cart-logo'/>
             </NavLinks>
@@ -38,7 +40,7 @@ const Navigation = () => {
         </NavigationContainer>
         <Outlet />
       </Fragment>
-    )
-  }
+  )
+}
 
-  export default Navigation
+export default Navigation
