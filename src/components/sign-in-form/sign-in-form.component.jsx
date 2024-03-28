@@ -4,9 +4,7 @@ import { useDispatch } from 'react-redux'
 import './sign-in-form.styles.scss'
 import FormInput from '../form-input/form-input.component'
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
-import { signInUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
-
-import { googleSignInStart } from '../../store/user/user.action'
+import { googleSignInStart, emailSignInStart } from '../../store/user/user.action'
 
 const defaultFormfields = {
   email: '',
@@ -37,7 +35,7 @@ const SignInForm = () => {
     }
 
     try {
-      await signInUserWithEmailAndPassword(email, password)
+      dispatch(emailSignInStart(email, password))
       resetFormFields()
     } catch (error) {
       switch (error.code) {
