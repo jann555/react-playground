@@ -6,6 +6,7 @@ export const BackgroundImage = styled.div`
   background-size: cover;
   background-position: center;
   background-image: ${({ imageurl }) => `url(${imageurl})`}
+
 `
 
 export const Body = styled.div`
@@ -32,6 +33,15 @@ export const Body = styled.div`
     font-weight: lighter;
     font-size: 16px;
   }
+
+    @media (max-width: 800px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 12px;
+    }
+
 `
 
 export const DirectoryItemContainer = styled.div`
@@ -65,4 +75,16 @@ overflow: hidden;
 &:last-child {
   margin-left: 7.5px;
 }
+
+
+@media (max-width: 800px) {
+  min-width: 45%;
+  height: 200px;
+}
+
+@media (max-width: 600px) {
+  min-width: 100%;
+  height: 180px;
+}
+
 `

@@ -27,7 +27,7 @@ const CartDropdown = () => {
                   : <EmptyMessage>Your Cart in Empty</EmptyMessage>
                 }
             </CartItems>
-            <Button type="button" buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={handleOnClick} >GO TO CHECKOUT</Button>
+            <Button type="button" buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={handleOnClick} >CHECKOUT</Button>
         </CartDropdownContainer>
   )
 }

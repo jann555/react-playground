@@ -20,11 +20,20 @@ ${InvertedButton} {
   margin-top: auto;
 }
 
+@media (max-width: 800px) {
+  width: 180px;
+  right: 20px;
+}
+
 `
 
 export const EmptyMessage = styled.span`
   font-size: 18px;
   margin: 50px auto;
+
+  @media (max-width: 800px) {
+    font-size: 16px;
+  } 
 `
 
 export const CartItems = styled.div`
@@ -32,4 +41,8 @@ export const CartItems = styled.div`
   display: flex;
   flex-direction: column;
   overflow: scroll;
+
+  @media (max-width: 800px) { 
+    height: 180px;
+  }
 `

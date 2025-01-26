@@ -9,11 +9,21 @@ export const CartIconContainer = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  @media (max-width: 600px) {
+    width: 35px;
+    height: 35px;
+  }
 `
 
 export const ShoppingIconContainer = styled(ShoppingSvg)`
   width: 24px;
   height: 24px;
+
+  @media (max-width: 600px) {
+    width: 20px;
+    height: 20px;
+  }
 `
 
 export const ItemCountContainer = styled.span`
@@ -21,4 +31,9 @@ export const ItemCountContainer = styled.span`
   font-size: 10px;
   font-weight: bold;
   bottom: 12px;
+
+  @media (max-width: 600px) {
+    font-size: 8px;
+    bottom: 10px;
+  }
 `

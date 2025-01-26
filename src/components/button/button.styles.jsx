@@ -18,11 +18,19 @@ export const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   aling-items: center;
+  white-space: normal; /* Allow text to wrap */
+  word-wrap: break-word; /* Break long words */
 
   &:hover {
     background-color: white;
     color: black;
     border: 1px solid black;
+  }
+
+  @media (max-width: 600px) {
+    min-width: 120px;
+    padding: 0 20px;
+    font-size: 14px;
   }
 `
 
@@ -33,6 +41,10 @@ export const GoogleSignInButton = styled(BaseButton)`
   &:hover {
     background-color: #357ae8;
     border: none;
+  }
+
+  @media (max-width: 800px) {
+    min-width: 135px;
   }
 `
 
@@ -46,9 +58,18 @@ export const InvertedButton = styled(BaseButton)`
     color: white;
     border: none;
   }
+
+  @media (max-width: 800px) {
+    min-width: 135px;
+  }
 `
 
 export const ButtonSpinner = styled(SpinnerContainer)`
   width: 30px;
   heigth: 30px;
+
+  @media (max-width: 800px) {   
+    width: 25px;
+    height: 25px;
+  }
 `
